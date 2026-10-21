@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101820">
+<title>ARS Gestión</title>
+<style>
+:root{--bg:#0d141b;--panel:#151f29;--line:#2c3d4b;--text:#f4f7fa;--muted:#a9b7c4;--accent:#29c7a5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Arial,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:9px;padding:11px 14px;font-weight:700}
+.btn{background:var(--accent);color:#08231e}
+.secondary{background:#1c2a36;color:white;border:1px solid var(--line)}
+.app{max-width:1100px;margin:auto;min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--line);background:#101820}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;background:var(--accent);color:#10242b;display:grid;place-items:center;font-weight:900}
+h1{font-size:18px;margin:0}
+.brand p,.muted{color:var(--muted);font-size:13px;margin:4px 0 0}
+.layout{display:grid;grid-template-columns:210px 1fr;min-height:85vh}
+nav{padding:14px;border-right:1px solid var(--line);background:#101820}
+nav button{display:block;width:100%;text-align:left;background:transparent;color:var(--muted);margin:4px 0}
+nav button.active,nav button:hover{background:#1c2a36;color:white}
+main{padding:22px;min-width:0}
+h2{margin:0 0 6px;font-size:25px}
+h3{margin-top:0}
+.welcome{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px;margin-bottom:15px}
+.stat-label{color:var(--muted);font-size:13px}
+.stat-value{font-size:28px;font-weight:800;margin-top:8px}
+.notice{background:#2a281c;border:1px solid #63542b;color:#f7d98a;padding:12px;border-radius:10px;font-size:13px;line-height:1.5;margin:14px 0}
+.hidden{display:none!important}
+.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}
+label{font-size:13px;color:var(--muted)}
+input,select{width:100%;padding:11px;border-radius:8px;border:1px solid var(--line);background:#0e171f;color:white}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.form-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+table{width:100%;border-collapse:collapse;min-width:480px;background:var(--panel)}
+th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--muted);background:#18232d}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.empty{text-align:center;color:var(--muted);padding:25px}
+.tag{background:#203d39;color:#7de5ce;padding:5px 8px;border-radius:20px;font-size:11px}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(ellipse at top right,#1c4b4a,transparent 50%),var(--bg)}
+.login{width:min(100%,420px);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:25px}
+.login h2{margin-top:22px}
+.login button[type=submit]{width:100%;margin-top:8px}
+footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px}
+@media(max-width:700px){.layout{grid-template-columns:1fr}nav{display:flex;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:7px}nav button{white-space:nowrap;width:auto}.form-grid{grid-template-columns:1fr}main{padding:15px}header{padding:12px}}
+</style>
+</head>
+<body>
+<section id="login" class="login-wrap">
+ <div class="login">
+  <div class="brand"><div class="logo">ARS</div><div><h1>ARS Gestión</h1><p>Energía y tecnología a tu servicio</p></div></div>
+  <h2>Bienvenido</h2>
+  <p class="muted">Ingresá para explorar la aplicación de prueba.</p>
+  <div class="notice">DEMO: este acceso no tiene seguridad real. No uses contraseñas verdaderas ni cargues información confidencial.</div>
+  <form id="loginForm">
+   <div class="field"><label>Usuario de prueba</label><input name="usuario" placeholder="Ej.: rodrigo" required></div>
+   <div class="field"><label>Contraseña de prueba</label><input type="password" placeholder="Cualquier texto" required></div>
+   <button class="btn" type="submit">Entrar a la demostración</button>
+  </form>
+  <footer>ARS Soluciones y Servicios · Versión de prueba</footer>
+ </div>
+</section>
+
+<div id="app" class="app hidden">
+ <header>
+  <div class="brand"><div class="logo">ARS</div><div><h1>ARS Gestión</h1><p>Energía y tecnología a tu servicio</p></div></div>
+  <button class="secondary" id="salir">Salir</button>
+ </header>
+ <div class="layout">
+  <nav id="nav">
+   <button class="active" data-page="inicio">▦ Inicio</button>
+   <button data-page="clientes">♙ Clientes</button>
+   <button data-page="presupuestos">▤ Presupuestos</button>
+   <button data-page="trabajos">🛠 Órdenes de trabajo</button>
+   <button data-page="empleados">♧ Empleados y permisos</button>
+   <button data-page="servicios">⚡ Servicios y precios</button>
+  </nav>
+  <main id="contenido"></main>
+ </div>
+</div>
+
+<script>
+const datos={
+ clientes:[],presupuestos:[],trabajos:[],empleados:[],
+ servicios:[
+  {nombre:"Instalación eléctrica",precio:0},
+  {nombre:"Reparación eléctrica",precio:0},
+  {nombre:"Planos eléctricos",precio:0},
+  {nombre:"Cámaras y redes",precio:0}
+ ]
+};
+let pagina="inicio";
+const dinero=n=>new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS"}).format(Number(n)||0);
+const seguro=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+document.getElementById("loginForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ document.getElementById("login").classList.add("hidden");
+ document.getElementById("app").classList.remove("hidden");
+ mostrar();
+});
+document.getElementById("salir").addEventListener("click",()=>{
+ document.getElementById("app").classList.add("hidden");
+ document.getElementById("login").classList.remove("hidden");
+});
+document.getElementById("nav").addEventListener("click",e=>{
+ const b=e.target.closest("[data-page]");
+ if(!b)return;
+ pagina=b.dataset.page;
+ document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));
+ mostrar();
+});
+function ir(p){pagina=p;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===p));mostrar()}
+function formulario(id,visible=true){document.getElementById(id).classList.toggle("hidden",!visible)}
+function mostrar(){
+ const main=document.getElementById("contenido");
+ const titulo=(t,d,boton="")=>`<div class="welcome"><div><h2>${t}</h2><p class="muted">${d}</p></div>${boton}</div>`;
+ if(pagina==="inicio"){
+  main.innerHTML=titulo("Panel principal","Resumen de ARS Soluciones y Servicios")+
+  `<div class="stats">
+   <div class="card"><div class="stat-label">Clientes</div><div class="stat-value">${datos.clientes.length}</div></div>
+   <div class="card"><div class="stat-label">Presupuestos</div><div class="stat-value">${datos.presupuestos.length}</div></div>
+   <div class="card"><div class="stat-label">Órdenes de trabajo</div><div class="stat-value">${datos.trabajos.length}</div></div>
+   <div class="card"><div class="stat-label">Empleados de prueba</div><div class="stat-value">${datos.empleados.length}</div></div>
+  </div>
+  <div class="card"><h3>Bienvenido a ARS Gestión</h3><p class="muted">Desde este panel podés explorar las secciones y probar los formularios.</p><div class="notice">Esta versión es una simulación: los datos no se guardan de forma permanente ni se comparten entre dispositivos. Después conectaremos la base de datos y el inicio de sesión seguro.</div></div>
+  <div class="stats"><button class="secondary" onclick="ir('clientes')">＋ Nuevo cliente</button><button class="secondary" onclick="ir('presupuestos')">＋ Presupuesto</button><button class="secondary" onclick="ir('trabajos')">＋ Orden de trabajo</button><button class="secondary" onclick="ir('empleados')">Administrar equipo</button></div>`;
+ }
+ if(pagina==="clientes"){
+  main.innerHTML=titulo("Clientes","Registro de clientes",'<button class="btn" onclick="formulario(\'fCliente\')">＋ Nuevo cliente</button>')+
+  `<form id="fCliente" class="card hidden"><div class="form-grid">
+  <div class="field"><label>Nombre o razón social</label><input name="nombre" required></div>
+  <div class="field"><label>Teléfono</label><input name="telefono"></div>
+  <div class="field"><label>Correo electrónico</label><input name="correo" type="email"></div>
+  <div class="field"><label>Dirección</label><input name="direccion"></div></div>
+  <div class="form-actions"><button class="btn">Guardar cliente de prueba</button><button type="button" class="secondary" onclick="formulario('fCliente',false)">Cancelar</button></div></form>`+
+  (datos.clientes.length?`<div class="table-wrap"><table><tr><th>Cliente</th><th>Teléfono</th><th>Dirección</th></tr>${datos.clientes.map(c=>`<tr><td>${seguro(c.nombre)}<br><span class="muted">${seguro(c.correo)}</span></td><td>${seguro(c.telefono)}</td><td>${seguro(c.direccion)}</td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay clientes. Tocá “Nuevo cliente” para probar.</div>');
+  document.getElementById("fCliente").addEventListener("submit",e=>{e.preventDefault();datos.clientes.push(Object.fromEntries(new FormData(e.target)));mostrar()});
+ }
+ if(pagina==="presupuestos"){
+  main.innerHTML=titulo("Presupuestos","Registro y seguimiento comercial",'<button class="btn" onclick="formulario(\'fPres\')">＋ Nuevo presupuesto</button>')+
+  `<form id="fPres" class="card hidden"><div class="form-grid">
+  <div class="field"><label>Cliente</label><input name="cliente" required></div>
+  <div class="field"><label>Descripción</label><input name="descripcion" required></div>
+  <div class="field"><label>Importe estimado ($)</label><input name="importe" type="number" min="0" step=".01" required></div>
+  <div class="field"><label>Estado</label><select name="estado"><option>Pendiente</option><option>Enviado</option><option>Aceptado</option><option>Rechazado</option></select></div></div>
+  <div class="form-actions"><button class="btn">Guardar presupuesto de prueba</button><button type="button" class="secondary" onclick="formulario('fPres',false)">Cancelar</button></div></form>`+
+  (datos.presupuestos.length?`<div class="table-wrap"><table><tr><th>N.º</th><th>Cliente</th><th>Descripción</th><th>Importe</th><th>Estado</th></tr>${datos.presupuestos.map((p,i)=>`<tr><td>${String(i+1).padStart(4,"0")}</td><td>${seguro(p.cliente)}</td><td>${seguro(p.descripcion)}</td><td>${dinero(p.importe)}</td><td><span class="tag">${seguro(p.estado)}</span></td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay presupuestos de prueba.</div>');
+  document.getElementById("fPres").addEventListener("submit",e=>{e.preventDefault();datos.presupuestos.push(Object.fromEntries(new FormData(e.target)));mostrar()});
+ }
+ if(pagina==="trabajos"){
+  main.innerHTML=titulo("Órdenes de trabajo","Seguimiento de tareas",'<button class="btn" onclick="formulario(\'fTrabajo\')">＋ Nueva orden</button>')+
+  `<form id="fTrabajo" class="card hidden"><div class="form-grid">
+  <div class="field"><label>Cliente</label><input name="cliente" required></div>
+  <div class="field"><label>Trabajo a realizar</label><input name="tarea" required></div>
+  <div class="field"><label>Fecha</label><input name="fecha" type="date"></div>
+  <div class="field"><label>Estado</label><select name="estado"><option>Pendiente</option><option>Programado</option><option>En ejecución</option><option>Finalizado</option></select></div></div>
+  <div class="form-actions"><button class="btn">Guardar orden de prueba</button><button type="button" class="secondary" onclick="formulario('fTrabajo',false)">Cancelar</button></div></form>`+
+  (datos.trabajos.length?`<div class="table-wrap"><table><tr><th>Orden</th><th>Cliente</th><th>Trabajo</th><th>Fecha</th><th>Estado</th></tr>${datos.trabajos.map((t,i)=>`<tr><td>OT-${String(i+1).padStart(4,"0")}</td><td>${seguro(t.cliente)}</td><td>${seguro(t.tarea)}</td><td>${seguro(t.fecha)}</td><td><span class="tag">${seguro(t.estado)}</span></td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay órdenes de trabajo de prueba.</div>');
+  document.getElementById("fTrabajo").addEventListener("submit",e=>{e.preventDefault();datos.trabajos.push(Object.fromEntries(new FormData(e.target)));mostrar()});
+ }
+ if(pagina==="empleados"){
+  main.innerHTML=titulo("Empleados y permisos","Administración ilustrativa",'<button class="btn" onclick="formulario(\'fEmp\')">＋ Agregar empleado</button>')+
+  `<div class="notice">Esta pantalla no crea usuarios reales ni aplica permisos de seguridad. Eso se configurará al conectar el sistema de autenticación.</div>
+  <form id="fEmp" class="card hidden"><div class="form-grid">
+  <div class="field"><label>Nombre</label><input name="nombre" required></div>
+  <div class="field"><label>Usuario de prueba</label><input name="usuario" required></div>
+  <div class="field"><label>Rol</label><select name="rol"><option>Empleado</option><option>Supervisor</option><option>Administrador</option></select></div>
+  <div class="field"><label>Acceso ilustrativo</label><select name="acceso"><option>Clientes y trabajos</option><option>Presupuestos</option><option>Solo lectura</option></select></div></div>
+  <div class="form-actions"><button class="btn">Agregar a la demo</button><button type="button" class="secondary" onclick="formulario('fEmp',false)">Cancelar</button></div></form>`+
+  (datos.empleados.length?`<div class="table-wrap"><table><tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th>Acceso</th></tr>${datos.empleados.map(x=>`<tr><td>${seguro(x.nombre)}</td><td>${seguro(x.usuario)}</td><td>${seguro(x.rol)}</td><td>${seguro(x.acceso)}</td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay empleados de prueba.</div>');
+  document.getElementById("fEmp").addEventListener("submit",e=>{e.preventDefault();datos.empleados.push(Object.fromEntries(new FormData(e.target)));mostrar()});
+ }
+ if(pagina==="servicios"){
+  main.innerHTML=titulo("Servicios y precios","Catálogo de prueba")+
+  '<div class="notice">Los precios iniciales están en $0. No son precios oficiales de ARS.</div>'+
+  `<form id="fServicio" class="card"><div class="form-grid"><div class="field"><label>Nombre del servicio</label><input name="nombre" required></div><div class="field"><label>Precio de referencia ($)</label><input name="precio" type="number" min="0" step=".01" required></div></div><div class="form-actions"><button class="btn">Agregar servicio</button></div></form>
+  <div class="table-wrap"><table><tr><th>Servicio</th><th>Precio de referencia</th></tr>${datos.servicios.map(s=>`<tr><td>${seguro(s.nombre)}</td><td>${dinero(s.precio)}</td></tr>`).join("")}</table></div>`;
+  document.getElementById("fServicio").addEventListener("submit",e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));datos.servicios.push({nombre:d.nombre,precio:Number(d.precio)});mostrar()});
+ }
+}
+</script>
+</body>
+</html>
