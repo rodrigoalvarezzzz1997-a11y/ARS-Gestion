@@ -1,190 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101820">
-<title>ARS Gestión</title>
+<title>ARS Gestión · Demo</title>
 <style>
-:root{--bg:#0d141b;--panel:#151f29;--line:#2c3d4b;--text:#f4f7fa;--muted:#a9b7c4;--accent:#29c7a5}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Arial,sans-serif}
-button,input,select{font:inherit}
-button{cursor:pointer;border:0;border-radius:9px;padding:11px 14px;font-weight:700}
-.btn{background:var(--accent);color:#08231e}
-.secondary{background:#1c2a36;color:white;border:1px solid var(--line)}
-.app{max-width:1100px;margin:auto;min-height:100vh}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--line);background:#101820}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:46px;height:46px;border-radius:12px;background:var(--accent);color:#10242b;display:grid;place-items:center;font-weight:900}
-h1{font-size:18px;margin:0}
-.brand p,.muted{color:var(--muted);font-size:13px;margin:4px 0 0}
-.layout{display:grid;grid-template-columns:210px 1fr;min-height:85vh}
-nav{padding:14px;border-right:1px solid var(--line);background:#101820}
-nav button{display:block;width:100%;text-align:left;background:transparent;color:var(--muted);margin:4px 0}
-nav button.active,nav button:hover{background:#1c2a36;color:white}
-main{padding:22px;min-width:0}
-h2{margin:0 0 6px;font-size:25px}
-h3{margin-top:0}
-.welcome{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
-.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px;margin-bottom:15px}
-.stat-label{color:var(--muted);font-size:13px}
-.stat-value{font-size:28px;font-weight:800;margin-top:8px}
-.notice{background:#2a281c;border:1px solid #63542b;color:#f7d98a;padding:12px;border-radius:10px;font-size:13px;line-height:1.5;margin:14px 0}
-.hidden{display:none!important}
-.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}
-label{font-size:13px;color:var(--muted)}
-input,select{width:100%;padding:11px;border-radius:8px;border:1px solid var(--line);background:#0e171f;color:white}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.form-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-table{width:100%;border-collapse:collapse;min-width:480px;background:var(--panel)}
-th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:13px}
-th{color:var(--muted);background:#18232d}
-.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
-.empty{text-align:center;color:var(--muted);padding:25px}
-.tag{background:#203d39;color:#7de5ce;padding:5px 8px;border-radius:20px;font-size:11px}
-.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(ellipse at top right,#1c4b4a,transparent 50%),var(--bg)}
-.login{width:min(100%,420px);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:25px}
-.login h2{margin-top:22px}
-.login button[type=submit]{width:100%;margin-top:8px}
-footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px}
-@media(max-width:700px){.layout{grid-template-columns:1fr}nav{display:flex;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:7px}nav button{white-space:nowrap;width:auto}.form-grid{grid-template-columns:1fr}main{padding:15px}header{padding:12px}}
+:root{--green:#163b34;--green2:#23836a;--bg:#f4f7f6;--ink:#17211f;--muted:#66736f;--line:#dce5e1;--white:#fff;--amber:#b7791f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 15px;background:var(--green);color:#fff;font-weight:650}button.secondary{background:#e8efec;color:var(--green)}button.outline{background:#fff;color:var(--green);border:1px solid var(--line)}button.small{padding:7px 10px;font-size:13px}.app{max-width:760px;margin:auto;min-height:100vh;background:var(--white);box-shadow:0 0 30px #12231b0a}.top{background:var(--green);color:white;padding:22px 18px 18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:45px;height:45px;border-radius:13px;background:#ffffff1c;display:grid;place-items:center;font-size:25px}.brand h1{font-size:19px;margin:0}.brand p{font-size:12px;margin:3px 0 0;color:#d5e4de}.content{padding:18px}.muted{color:var(--muted);font-size:13px}.title{font-size:24px;line-height:1.2;margin:8px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.stack{display:grid;gap:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:16px;padding:15px;background:white}.tile{min-height:125px;display:flex;flex-direction:column;gap:9px;text-align:left;color:var(--ink);background:#fff;border:1px solid var(--line);padding:16px}.tile .emoji{font-size:28px}.tile b{font-size:16px}.tile span:last-child{font-size:12px;color:var(--muted);font-weight:400}.tile.selected{border:2px solid var(--green2);background:#f1f8f5}.field{display:grid;gap:6px;margin:10px 0}.field label{font-size:13px;font-weight:650}.field input,.field select,.field textarea{width:100%;border:1px solid #cbd7d2;border-radius:10px;padding:12px;background:white;color:var(--ink)}.field textarea{min-height:70px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.actions button{flex:1}.pill{display:inline-block;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:700;background:#eaf4ef;color:var(--green)}.pill.amber{background:#fff3dd;color:#8c5a11}.pill.gray{background:#eef1f0;color:#52605b}.item{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:13px 0}.item:last-child{border-bottom:0}.price{font-weight:750;white-space:nowrap}.total{background:#f0f6f3;border-radius:14px;padding:15px}.navback{border:0;background:transparent;color:inherit;padding:0;font-weight:650}.hidden{display:none!important}.footer{padding:14px 18px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center}.notice{padding:11px 12px;background:#fff7e7;border:1px solid #f1dfb8;border-radius:12px;color:#765017;font-size:12px}.search{margin:10px 0}.smallmuted{font-size:11px;color:var(--muted)}.qty{display:flex;align-items:center;gap:8px}.qty button{padding:4px 10px;border-radius:8px}.service{display:flex;gap:12px;align-items:center}.service .emoji{font-size:25px;background:#f1f5f3;border-radius:10px;padding:9px}.login{padding:26px 20px 34px}.loginbrand{text-align:center;margin:8px 0 26px}.loginbrand .logo{margin:auto;width:64px;height:64px;font-size:32px}.loginbrand h1{margin:12px 0 4px}.sectionhead{display:flex;align-items:center;gap:12px;margin:14px 0}.sectionhead h2{font-size:19px;margin:0}.line{height:1px;background:var(--line);flex:1}
+@media(min-width:600px){.content{padding:24px}.top{padding:25px 24px}.login{padding:38px 28px}}
 </style>
 </head>
 <body>
-<section id="login" class="login-wrap">
- <div class="login">
-  <div class="brand"><div class="logo">ARS</div><div><h1>ARS Gestión</h1><p>Energía y tecnología a tu servicio</p></div></div>
-  <h2>Bienvenido</h2>
-  <p class="muted">Ingresá para explorar la aplicación de prueba.</p>
-  <div class="notice">DEMO: este acceso no tiene seguridad real. No uses contraseñas verdaderas ni cargues información confidencial.</div>
-  <form id="loginForm">
-   <div class="field"><label>Usuario de prueba</label><input name="usuario" placeholder="Ej.: rodrigo" required></div>
-   <div class="field"><label>Contraseña de prueba</label><input type="password" placeholder="Cualquier texto" required></div>
-   <button class="btn" type="submit">Entrar a la demostración</button>
-  </form>
-  <footer>ARS Soluciones y Servicios · Versión de prueba</footer>
- </div>
-</section>
-
-<div id="app" class="app hidden">
- <header>
-  <div class="brand"><div class="logo">ARS</div><div><h1>ARS Gestión</h1><p>Energía y tecnología a tu servicio</p></div></div>
-  <button class="secondary" id="salir">Salir</button>
- </header>
- <div class="layout">
-  <nav id="nav">
-   <button class="active" data-page="inicio">▦ Inicio</button>
-   <button data-page="clientes">♙ Clientes</button>
-   <button data-page="presupuestos">▤ Presupuestos</button>
-   <button data-page="trabajos">🛠 Órdenes de trabajo</button>
-   <button data-page="empleados">♧ Empleados y permisos</button>
-   <button data-page="servicios">⚡ Servicios y precios</button>
-  </nav>
-  <main id="contenido"></main>
- </div>
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">⚡</div><div><h1>ARS Gestión</h1><p>Energía y tecnología a tu servicio</p></div></div></header>
+<main id="main" class="content"></main>
+<div class="footer">Prototipo de prueba · Datos guardados solo en este navegador · No usar para datos sensibles</div>
 </div>
-
 <script>
-const datos={
- clientes:[],presupuestos:[],trabajos:[],empleados:[],
- servicios:[
-  {nombre:"Instalación eléctrica",precio:0},
-  {nombre:"Reparación eléctrica",precio:0},
-  {nombre:"Planos eléctricos",precio:0},
-  {nombre:"Cámaras y redes",precio:0}
- ]
-};
-let pagina="inicio";
-const dinero=n=>new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS"}).format(Number(n)||0);
-const seguro=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-document.getElementById("loginForm").addEventListener("submit",e=>{
- e.preventDefault();
- document.getElementById("login").classList.add("hidden");
- document.getElementById("app").classList.remove("hidden");
- mostrar();
-});
-document.getElementById("salir").addEventListener("click",()=>{
- document.getElementById("app").classList.add("hidden");
- document.getElementById("login").classList.remove("hidden");
-});
-document.getElementById("nav").addEventListener("click",e=>{
- const b=e.target.closest("[data-page]");
- if(!b)return;
- pagina=b.dataset.page;
- document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));
- mostrar();
-});
-function ir(p){pagina=p;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===p));mostrar()}
-function formulario(id,visible=true){document.getElementById(id).classList.toggle("hidden",!visible)}
-function mostrar(){
- const main=document.getElementById("contenido");
- const titulo=(t,d,boton="")=>`<div class="welcome"><div><h2>${t}</h2><p class="muted">${d}</p></div>${boton}</div>`;
- if(pagina==="inicio"){
-  main.innerHTML=titulo("Panel principal","Resumen de ARS Soluciones y Servicios")+
-  `<div class="stats">
-   <div class="card"><div class="stat-label">Clientes</div><div class="stat-value">${datos.clientes.length}</div></div>
-   <div class="card"><div class="stat-label">Presupuestos</div><div class="stat-value">${datos.presupuestos.length}</div></div>
-   <div class="card"><div class="stat-label">Órdenes de trabajo</div><div class="stat-value">${datos.trabajos.length}</div></div>
-   <div class="card"><div class="stat-label">Empleados de prueba</div><div class="stat-value">${datos.empleados.length}</div></div>
-  </div>
-  <div class="card"><h3>Bienvenido a ARS Gestión</h3><p class="muted">Desde este panel podés explorar las secciones y probar los formularios.</p><div class="notice">Esta versión es una simulación: los datos no se guardan de forma permanente ni se comparten entre dispositivos. Después conectaremos la base de datos y el inicio de sesión seguro.</div></div>
-  <div class="stats"><button class="secondary" onclick="ir('clientes')">＋ Nuevo cliente</button><button class="secondary" onclick="ir('presupuestos')">＋ Presupuesto</button><button class="secondary" onclick="ir('trabajos')">＋ Orden de trabajo</button><button class="secondary" onclick="ir('empleados')">Administrar equipo</button></div>`;
- }
- if(pagina==="clientes"){
-  main.innerHTML=titulo("Clientes","Registro de clientes",'<button class="btn" onclick="formulario(\'fCliente\')">＋ Nuevo cliente</button>')+
-  `<form id="fCliente" class="card hidden"><div class="form-grid">
-  <div class="field"><label>Nombre o razón social</label><input name="nombre" required></div>
-  <div class="field"><label>Teléfono</label><input name="telefono"></div>
-  <div class="field"><label>Correo electrónico</label><input name="correo" type="email"></div>
-  <div class="field"><label>Dirección</label><input name="direccion"></div></div>
-  <div class="form-actions"><button class="btn">Guardar cliente de prueba</button><button type="button" class="secondary" onclick="formulario('fCliente',false)">Cancelar</button></div></form>`+
-  (datos.clientes.length?`<div class="table-wrap"><table><tr><th>Cliente</th><th>Teléfono</th><th>Dirección</th></tr>${datos.clientes.map(c=>`<tr><td>${seguro(c.nombre)}<br><span class="muted">${seguro(c.correo)}</span></td><td>${seguro(c.telefono)}</td><td>${seguro(c.direccion)}</td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay clientes. Tocá “Nuevo cliente” para probar.</div>');
-  document.getElementById("fCliente").addEventListener("submit",e=>{e.preventDefault();datos.clientes.push(Object.fromEntries(new FormData(e.target)));mostrar()});
- }
- if(pagina==="presupuestos"){
-  main.innerHTML=titulo("Presupuestos","Registro y seguimiento comercial",'<button class="btn" onclick="formulario(\'fPres\')">＋ Nuevo presupuesto</button>')+
-  `<form id="fPres" class="card hidden"><div class="form-grid">
-  <div class="field"><label>Cliente</label><input name="cliente" required></div>
-  <div class="field"><label>Descripción</label><input name="descripcion" required></div>
-  <div class="field"><label>Importe estimado ($)</label><input name="importe" type="number" min="0" step=".01" required></div>
-  <div class="field"><label>Estado</label><select name="estado"><option>Pendiente</option><option>Enviado</option><option>Aceptado</option><option>Rechazado</option></select></div></div>
-  <div class="form-actions"><button class="btn">Guardar presupuesto de prueba</button><button type="button" class="secondary" onclick="formulario('fPres',false)">Cancelar</button></div></form>`+
-  (datos.presupuestos.length?`<div class="table-wrap"><table><tr><th>N.º</th><th>Cliente</th><th>Descripción</th><th>Importe</th><th>Estado</th></tr>${datos.presupuestos.map((p,i)=>`<tr><td>${String(i+1).padStart(4,"0")}</td><td>${seguro(p.cliente)}</td><td>${seguro(p.descripcion)}</td><td>${dinero(p.importe)}</td><td><span class="tag">${seguro(p.estado)}</span></td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay presupuestos de prueba.</div>');
-  document.getElementById("fPres").addEventListener("submit",e=>{e.preventDefault();datos.presupuestos.push(Object.fromEntries(new FormData(e.target)));mostrar()});
- }
- if(pagina==="trabajos"){
-  main.innerHTML=titulo("Órdenes de trabajo","Seguimiento de tareas",'<button class="btn" onclick="formulario(\'fTrabajo\')">＋ Nueva orden</button>')+
-  `<form id="fTrabajo" class="card hidden"><div class="form-grid">
-  <div class="field"><label>Cliente</label><input name="cliente" required></div>
-  <div class="field"><label>Trabajo a realizar</label><input name="tarea" required></div>
-  <div class="field"><label>Fecha</label><input name="fecha" type="date"></div>
-  <div class="field"><label>Estado</label><select name="estado"><option>Pendiente</option><option>Programado</option><option>En ejecución</option><option>Finalizado</option></select></div></div>
-  <div class="form-actions"><button class="btn">Guardar orden de prueba</button><button type="button" class="secondary" onclick="formulario('fTrabajo',false)">Cancelar</button></div></form>`+
-  (datos.trabajos.length?`<div class="table-wrap"><table><tr><th>Orden</th><th>Cliente</th><th>Trabajo</th><th>Fecha</th><th>Estado</th></tr>${datos.trabajos.map((t,i)=>`<tr><td>OT-${String(i+1).padStart(4,"0")}</td><td>${seguro(t.cliente)}</td><td>${seguro(t.tarea)}</td><td>${seguro(t.fecha)}</td><td><span class="tag">${seguro(t.estado)}</span></td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay órdenes de trabajo de prueba.</div>');
-  document.getElementById("fTrabajo").addEventListener("submit",e=>{e.preventDefault();datos.trabajos.push(Object.fromEntries(new FormData(e.target)));mostrar()});
- }
- if(pagina==="empleados"){
-  main.innerHTML=titulo("Empleados y permisos","Administración ilustrativa",'<button class="btn" onclick="formulario(\'fEmp\')">＋ Agregar empleado</button>')+
-  `<div class="notice">Esta pantalla no crea usuarios reales ni aplica permisos de seguridad. Eso se configurará al conectar el sistema de autenticación.</div>
-  <form id="fEmp" class="card hidden"><div class="form-grid">
-  <div class="field"><label>Nombre</label><input name="nombre" required></div>
-  <div class="field"><label>Usuario de prueba</label><input name="usuario" required></div>
-  <div class="field"><label>Rol</label><select name="rol"><option>Empleado</option><option>Supervisor</option><option>Administrador</option></select></div>
-  <div class="field"><label>Acceso ilustrativo</label><select name="acceso"><option>Clientes y trabajos</option><option>Presupuestos</option><option>Solo lectura</option></select></div></div>
-  <div class="form-actions"><button class="btn">Agregar a la demo</button><button type="button" class="secondary" onclick="formulario('fEmp',false)">Cancelar</button></div></form>`+
-  (datos.empleados.length?`<div class="table-wrap"><table><tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th>Acceso</th></tr>${datos.empleados.map(x=>`<tr><td>${seguro(x.nombre)}</td><td>${seguro(x.usuario)}</td><td>${seguro(x.rol)}</td><td>${seguro(x.acceso)}</td></tr>`).join("")}</table></div>`:'<div class="card empty">Todavía no hay empleados de prueba.</div>');
-  document.getElementById("fEmp").addEventListener("submit",e=>{e.preventDefault();datos.empleados.push(Object.fromEntries(new FormData(e.target)));mostrar()});
- }
- if(pagina==="servicios"){
-  main.innerHTML=titulo("Servicios y precios","Catálogo de prueba")+
-  '<div class="notice">Los precios iniciales están en $0. No son precios oficiales de ARS.</div>'+
-  `<form id="fServicio" class="card"><div class="form-grid"><div class="field"><label>Nombre del servicio</label><input name="nombre" required></div><div class="field"><label>Precio de referencia ($)</label><input name="precio" type="number" min="0" step=".01" required></div></div><div class="form-actions"><button class="btn">Agregar servicio</button></div></form>
-  <div class="table-wrap"><table><tr><th>Servicio</th><th>Precio de referencia</th></tr>${datos.servicios.map(s=>`<tr><td>${seguro(s.nombre)}</td><td>${dinero(s.precio)}</td></tr>`).join("")}</table></div>`;
-  document.getElementById("fServicio").addEventListener("submit",e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));datos.servicios.push({nombre:d.nombre,precio:Number(d.precio)});mostrar()});
- }
+const $=id=>document.getElementById(id);
+const rubros=[
+{name:"Electricidad",emoji:"⚡",desc:"Instalaciones, tableros y reparaciones"},
+{name:"Refrigeración",emoji:"❄️",desc:"Aires acondicionados y climatización"},
+{name:"Heladeras",emoji:"🧊",desc:"Diagnóstico y reparación"},
+{name:"Cámaras",emoji:"📹",desc:"Seguridad y cableado"},
+{name:"Plomería",emoji:"🔧",desc:"Instalaciones y reparaciones"},
+{name:"Demolición",emoji:"🧱",desc:"Trabajos de demolición"}
+];
+const defaultServices=[
+{category:"Electricidad",name:"Instalación de toma o punto eléctrico",unit:"por punto",price:0,emoji:"🔌"},
+{category:"Electricidad",name:"Instalación de luminaria",unit:"por unidad",price:0,emoji:"💡"},
+{category:"Electricidad",name:"Cañería embutida",unit:"por tramo / unidad a definir",price:0,emoji:"🧰"},
+{category:"Electricidad",name:"Instalación o adecuación de tablero",unit:"por trabajo",price:0,emoji:"⚡"},
+{category:"Refrigeración",name:"Instalación de aire acondicionado",unit:"por equipo",price:0,emoji:"❄️"},
+{category:"Refrigeración",name:"Mantenimiento de aire acondicionado",unit:"por equipo",price:0,emoji:"🪛"},
+{category:"Heladeras",name:"Diagnóstico de heladera",unit:"por visita",price:0,emoji:"🧊"},
+{category:"Heladeras",name:"Reparación de heladera",unit:"por trabajo",price:0,emoji:"🔧"},
+{category:"Cámaras",name:"Instalación de cámara",unit:"por cámara",price:0,emoji:"📹"},
+{category:"Plomería",name:"Reparación de plomería",unit:"por trabajo",price:0,emoji:"🚿"},
+{category:"Demolición",name:"Demolición menor",unit:"por trabajo",price:0,emoji:"🧱"}
+];
+let state={page:"login",category:"Electricidad",selected:[],clientType:"existing",editingClient:null,editingService:null,currentUser:null};
+const defaultAdmin={username:"Rodrigo Alvarez",password:"1234",name:"Rodrigo Alvarez",role:"Administrador"};
+function users(){return load("users",[defaultAdmin])}
+function isAdmin(){return !!state.currentUser&&state.currentUser.username.toLowerCase()==="rodrigo alvarez"}
+const permissionLabels={quotes_view:"Ver presupuestos guardados",quotes_create:"Crear presupuestos",quotes_status:"Cambiar estado de presupuestos / aceptar",ot_view:"Ver órdenes de trabajo",ot_update:"Agregar notas y finalizar/reabrir OT",clients:"Crear y editar clientes",prices:"Modificar precios y servicios",users:"Administrar usuarios de acceso"};
+function can(permission){return isAdmin()||!!state.currentUser?.permissions?.[permission]}
+function canConfig(){return isAdmin()||can("prices")||can("clients")||can("users")}
+function allowedPage(p){if(p==="settings")return canConfig();const rules={settings:"prices",priceSettings:"prices",serviceForm:"prices",clients:"clients",clientForm:"clients",users:"users",userForm:"users",quoteClient:"quotes_create",chooseClient:"quotes_create",quoteAddress:"quotes_create",quoteCategory:"quotes_create",quoteServices:"quotes_create",quoteReview:"quotes_create",quoteList:"quotes_view",quoteDetail:"quotes_view",otmenu:"ot_view",otlist:"ot_view",otDetail:"ot_view"};return !rules[p]||can(rules[p])}
+function load(key,fallback){try{return JSON.parse(localStorage.getItem("ars_"+key))??fallback}catch{return fallback}}
+function save(key,val){localStorage.setItem("ars_"+key,JSON.stringify(val))}
+function clients(){return load("clients",[])}
+function services(){return load("services",defaultServices)}
+function quotes(){return load("quotes",[])}
+function ots(){return load("ots",[])}
+function money(n){return Number(n||0).toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0})}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function setPage(p){if(!allowedPage(p)){alert("Tu usuario no tiene permiso para acceder a este apartado. Pedile al administrador general que revise tus permisos.");return}state.page=p;render()}
+function headerBack(label,fn){return `<button class="navback" onclick="${fn}">‹ ${label}</button>`}
+function render(){
+const m=$("main");
+if(state.page==="login"){m.className="login";m.innerHTML=`<div class="loginbrand"><div class="logo">⚡</div><h1>ARS Soluciones y Servicios</h1><div class="muted">Energía y tecnología a tu servicio</div></div><h2 style="text-align:center">Iniciar sesión</h2><p class="muted" style="text-align:center">Ingresá para administrar presupuestos y órdenes de trabajo.</p><form id="loginForm"><div class="field"><label>Usuario</label><input id="user" autocomplete="username" placeholder="Ingresá tu usuario" required></div><div class="field"><label>Contraseña</label><input id="pass" type="password" autocomplete="current-password" placeholder="Ingresá tu contraseña" required></div><div id="loginErr" class="notice hidden">Usuario o contraseña incorrectos.</div><button style="width:100%;margin-top:10px">Iniciar sesión</button></form><p class="smallmuted" style="text-align:center;margin-top:18px">Acceso de demostración. No es autenticación segura.</p>`;$("loginForm").onsubmit=e=>{e.preventDefault();let u=$("user").value.trim(),p=$("pass").value;let found=users().find(x=>x.username.toLowerCase()===u.toLowerCase()&&x.password===p);if(!found&&u.toLowerCase()==="rodrigo alvarez"&&p==="1234")found=defaultAdmin;if(found){state.currentUser={username:found.username,name:found.name,role:found.role};setPage("home")}else $("loginErr").classList.remove("hidden")};return}
+if(state.page==="home"){m.innerHTML=`<div><div class="muted">PANEL PRINCIPAL</div><h2 class="title">Hola, ${esc(state.currentUser?.name||"Rodrigo")} 👋</h2><div class="muted">${isAdmin()?"Administrador general":"Acceso de empleado"} · ¿Qué querés gestionar hoy?</div></div><div class="grid" style="margin-top:20px">${(can("quotes_create")||can("quotes_view"))?`<button class="tile" onclick="${can("quotes_create")?"newQuote()":"setPage('quoteList')"}"><span class="emoji">📄</span><b>Presupuestos</b><span>${can("quotes_create")?"Crear y consultar presupuestos":"Consultar presupuestos guardados"}</span></button>`:""}${can("ot_view")?`<button class="tile" onclick="setPage('otmenu')"><span class="emoji">🛠️</span><b>Órdenes de trabajo (OT)</b><span>Trabajos aprobados por clientes</span></button>`:""}${canConfig()?`<button class="tile" onclick="setPage('settings')" style="border:2px solid var(--green2);background:#f1f8f5"><span class="emoji">⚙️</span><b>Ajustes y precios</b><span>Administrar precios, clientes y usuarios</span></button>`:""}</div><div class="sectionhead"><h2>Resumen</h2><div class="line"></div></div><div class="grid"><div class="card"><div class="muted">Presupuestos</div><div class="title">${quotes().length}</div></div><div class="card"><div class="muted">OT en proceso</div><div class="title">${ots().filter(o=>o.status==="En proceso").length}</div></div><div class="card"><div class="muted">OT finalizadas</div><div class="title">${ots().filter(o=>o.status==="Finalizada").length}</div></div><div class="card"><div class="muted">Clientes</div><div class="title">${clients().length}</div></div></div><div class="notice" style="margin-top:16px">Desde <b>Ajustes y precios</b> podés ingresar el precio de cada servicio, editarlo cuando cambie y agregar nuevos servicios. Los presupuestos tomarán esos valores automáticamente.</div>`;return}
+if(state.page==="settings"){m.innerHTML=`${headerBack("Volver al inicio","setPage('home')")}<h2 class="title">Configuración</h2><p class="muted">Desde acá configurás los precios de mano de obra y administrás los clientes. Los cambios de precios se aplican a los nuevos presupuestos.</p><div class="grid"><button class="tile" onclick="setPage('priceSettings')"><span class="emoji">💲</span><b>Servicios y precios</b><span>Cargar y modificar precios cuando lo necesites</span></button><button class="tile" onclick="setPage('clients')"><span class="emoji">👥</span><b>Clientes</b><span>Agregar clientes y direcciones</span></button><button class="tile" onclick="setPage('users')"><span class="emoji">🔐</span><b>Usuarios de acceso</b><span>Crear empleados y asignar contraseñas</span></button></div><div class="actions"><button class="outline" onclick="if(confirm('¿Borrar todos los datos de esta demo en este navegador?')){['clients','services','quotes','ots'].forEach(k=>localStorage.removeItem('ars_'+k));render()}">Borrar datos de prueba</button><button onclick="setPage('home')">Volver al panel</button></div>`;return}
+if(state.page==="priceSettings"){m.innerHTML=`${headerBack("Configuración","setPage('settings')")}<h2 class="title">Servicios y precios</h2><p class="muted">Ingresá tus tarifas reales en pesos argentinos. Podés editar cualquier precio o agregar un nuevo servicio; los presupuestos calcularán el total automáticamente.</p><button onclick="addServiceForm()" class="secondary">＋ Agregar servicio</button><div class="stack" style="margin-top:14px">${services().map((s,i)=>`<div class="item"><div><b>${esc(s.name)}</b><div class="muted">${esc(s.category)} · ${esc(s.unit)}</div><div class="price">${money(s.price)}</div></div><button class="outline small" onclick="editService(${i})">Editar</button></div>`).join("")}</div>`;return}
+if(state.page==="users"){let list=users().filter(u=>u.username.toLowerCase()!=="rodrigo alvarez");m.innerHTML=`${headerBack("Configuración","setPage('settings')")}<div class="row"><h2 class="title">Usuarios de acceso</h2><button class="small" onclick="addUserForm()">＋ Crear</button></div><p class="muted">Como administrador general, podés crear usuarios para tus empleados y definir sus contraseñas. Los empleados no podrán ingresar a Ajustes ni modificar precios.</p><div class="notice">Por seguridad, esta versión es una demo local: las cuentas se guardan solamente en este navegador y las contraseñas no están protegidas como en un sistema real.</div>${list.length?list.map((u,i)=>`<div class="card" style="margin-top:10px"><div class="row"><div><b>${esc(u.name)}</b><div class="muted">Usuario: ${esc(u.username)}</div></div><span class="pill gray">${esc(u.role)}</span></div><div class="actions"><button class="outline small" onclick="editUser(${users().findIndex(x=>x.username===u.username)})">Editar</button><button class="outline small" onclick="deleteUser(${users().findIndex(x=>x.username===u.username)})">Eliminar</button></div></div>`).join(""):`<div class="card"><p class="muted">Todavía no creaste usuarios para empleados.</p></div>`}`;return}
+if(state.page==="userForm"){let u=state.editingUser||{};let perms=u.permissions||{};m.innerHTML=`${headerBack("Usuarios de acceso","setPage('users')")}<h2 class="title">${u.index==null?"Crear usuario":"Editar usuario"}</h2><p class="muted">Elegí exactamente qué tareas puede realizar esta persona. Los permisos de precios y administración de usuarios son independientes.</p><form id="userForm"><div class="field"><label>Nombre y apellido del empleado</label><input id="uname" required value="${esc(u.name||"")}" placeholder="Ej.: Juan Pérez"></div><div class="field"><label>Nombre de usuario</label><input id="ulogin" required value="${esc(u.username||"")}" placeholder="Ej.: juan.perez" ${u.index!=null?"readonly":""}></div><div class="field"><label>${u.index==null?"Contraseña de acceso":"Nueva contraseña (opcional)"}</label><input id="upass" type="password" ${u.index==null?"required":""} minlength="4" placeholder="${u.index==null?"Crear contraseña":"Dejar vacío para mantener la actual"}"></div><div class="sectionhead"><h2>Permisos del usuario</h2><div class="line"></div></div><div class="card">${Object.entries(permissionLabels).map(([key,label])=>`<label class="item" style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" name="perm" value="${key}" ${perms[key]||u.role==="Administrador"?"checked":""} style="width:20px;height:20px;flex:0 0 auto"><span>${label}</span></label>`).join("")}</div><div class="notice">Como administrador general, conservás el control total. No habilites “Modificar precios y servicios” ni “Administrar usuarios” salvo que realmente quieras delegar esas funciones.</div><div class="actions"><button type="button" class="outline" onclick="setPage('users')">Cancelar</button><button>Guardar usuario</button></div></form>`;$ ("userForm").onsubmit=e=>{e.preventDefault();let all=users(),name=$("uname").value.trim(),username=$("ulogin").value.trim(),password=$("upass").value,permissions={};document.querySelectorAll('input[name="perm"]:checked').forEach(x=>permissions[x.value]=true);if(username.toLowerCase()==="rodrigo alvarez"){alert("Ese usuario está reservado para el administrador principal.");return}if(u.index==null&&all.some(x=>x.username.toLowerCase()===username.toLowerCase())){alert("Ya existe un usuario con ese nombre.");return}if(u.index==null)all.push({name,username,password,role:"Empleado",permissions});else{let old=all[u.index];old.name=name;old.permissions=permissions;if(password)old.password=password;old.role="Empleado"}save("users",all);setPage("users")};return}
+if(state.page==="serviceForm"){let s=state.editingService; m.innerHTML=`${headerBack("Servicios y precios","setPage('priceSettings')")}<h2 class="title">${s.index==null?"Agregar servicio":"Editar servicio"}</h2><form id="serviceForm"><div class="field"><label>Nombre del servicio</label><input id="sname" required value="${esc(s.name||"")}"></div><div class="field"><label>Rubro</label><select id="scat">${rubros.map(r=>`<option ${r.name===s.category?"selected":""}>${r.name}</option>`).join("")}</select></div><div class="field"><label>Unidad de cobro</label><input id="sunit" required value="${esc(s.unit||"por trabajo")}"></div><div class="field"><label>Precio de mano de obra (ARS)</label><input id="sprice" type="number" min="0" step="1" required value="${Number(s.price||0)}"></div><div class="actions"><button type="button" class="outline" onclick="setPage('priceSettings')">Cancelar</button><button>Guardar servicio</button></div></form>`;$("serviceForm").onsubmit=e=>{e.preventDefault();let all=services(),v={name:$("sname").value.trim(),category:$("scat").value,unit:$("sunit").value.trim(),price:Number($("sprice").value),emoji:"🛠️"};if(s.index==null)all.push(v);else all[s.index]=v;save("services",all);setPage("priceSettings")};return}
+if(state.page==="clients"){m.innerHTML=`${headerBack("Configuración","setPage('settings')")}<div class="row"><h2 class="title">Clientes</h2><button onclick="clientForm()">＋ Nuevo</button></div>${clients().length?clients().map((c,i)=>`<div class="card" style="margin-top:10px"><div class="row"><b>${esc(c.name)}</b><button class="outline small" onclick="editClient(${i})">Editar</button></div><div class="muted">${esc(c.phone||"Sin teléfono")} · ${esc(c.tax||"Sin CUIT/DNI")}</div><div class="muted">Direcciones: ${(c.addresses||[]).map(a=>esc(a.label||a.address)).join(", ")||"Sin direcciones"}</div></div>`).join(""):`<p class="muted">Todavía no hay clientes. Agregá uno para usarlo en un presupuesto.</p>`}`;return}
+if(state.page==="clientForm"){let c=state.editingClient||{name:"",phone:"",email:"",tax:"",addresses:[]};m.innerHTML=`${headerBack("Clientes","setPage('clients')")}<h2 class="title">${c.index==null?"Nuevo cliente":"Editar cliente"}</h2><form id="clientForm"><div class="field"><label>Nombre / Empresa *</label><input id="cname" required value="${esc(c.name)}"></div><div class="field"><label>CUIT / DNI</label><input id="ctax" value="${esc(c.tax)}"></div><div class="field"><label>Teléfono</label><input id="cphone" value="${esc(c.phone)}"></div><div class="field"><label>Correo</label><input id="cemail" type="email" value="${esc(c.email)}"></div><div class="field"><label>Direcciones de trabajo (una por línea)</label><textarea id="caddresses" placeholder="Local Centro — Calle y número&#10;Sucursal Norte — Calle y número">${(c.addresses||[]).map(a=>`${a.label||""}${a.label?" — ":""}${a.address||""}`).join("\\n")}</textarea></div><div class="actions"><button type="button" class="outline" onclick="setPage('clients')">Cancelar</button><button>Guardar cliente</button></div></form>`;$("clientForm").onsubmit=e=>{e.preventDefault();let all=clients(),addrs=$("caddresses").value.split("\\n").map(line=>{let p=line.split("—");return {label:(p.length>1?p[0]:"").trim(),address:(p.length>1?p.slice(1).join("—"):p[0]).trim()}}).filter(a=>a.address||a.label);let v={name:$("cname").value.trim(),tax:$("ctax").value.trim(),phone:$("cphone").value.trim(),email:$("cemail").value.trim(),addresses:addrs};if(c.index==null)all.push(v);else all[c.index]=v;save("clients",all);setPage(state.returnPage||"clients")};return}
+if(state.page==="quoteClient"){m.innerHTML=`${headerBack("Presupuestos","setPage('home')")}<h2 class="title">Nuevo presupuesto</h2><p class="muted">Paso 1 · Seleccionar cliente</p><div class="grid"><button class="tile" onclick="state.returnPage='quoteClient';state.editingClient=null;setPage('clientForm')"><span class="emoji">➕</span><b>Cliente nuevo</b><span>Cargar datos y direcciones</span></button><button class="tile" onclick="state.clientType='existing';setPage('chooseClient')"><span class="emoji">👥</span><b>Cliente existente</b><span>Buscar en el registro</span></button></div><div class="actions"><button class="outline" onclick="setPage('quoteList')">Ver presupuestos guardados</button></div>`;return}
+if(state.page==="chooseClient"){m.innerHTML=`${headerBack("Nuevo presupuesto","setPage('quoteClient')")}<h2 class="title">Elegir cliente</h2><input class="search" id="clientSearch" placeholder="Buscar por nombre o empresa..." oninput="filterClients()"><div id="clientList">${clientListHtml(clients())}</div><button class="secondary" style="width:100%;margin-top:12px" onclick="state.returnPage='chooseClient';state.editingClient=null;setPage('clientForm')">＋ Crear cliente nuevo</button>`;return}
+if(state.page==="quoteCategory"){m.innerHTML=`${headerBack("Cliente y dirección","setPage('quoteAddress')")}<h2 class="title">¿Qué trabajo vamos a presupuestar?</h2><p class="muted">Paso 2 · Elegí un rubro. Después seleccionás los servicios.</p><div class="grid">${rubros.map(r=>`<button class="tile ${state.category===r.name?'selected':''}" onclick="state.category='${r.name}';setPage('quoteServices')"><span class="emoji">${r.emoji}</span><b>${r.name}</b><span>${r.desc}</span></button>`).join("")}</div>`;return}
+if(state.page==="quoteAddress"){let c=state.currentClient;m.innerHTML=`${headerBack("Cliente","setPage('chooseClient')")}<h2 class="title">Dirección del trabajo</h2><p class="muted">Cliente: <b>${esc(c.name)}</b></p><div class="stack">${(c.addresses||[]).length?(c.addresses||[]).map((a,i)=>`<button class="tile" onclick="state.currentAddress=${i};setPage('quoteCategory')"><span class="emoji">📍</span><b>${esc(a.label||"Dirección "+(i+1))}</b><span>${esc(a.address)}</span></button>`).join(""):`<div class="notice">Este cliente no tiene direcciones guardadas. Podés continuar y cargar una dirección para este presupuesto.</div><div class="field"><label>Dirección de trabajo</label><input id="oneAddress" placeholder="Calle, número, localidad"></div><button onclick="state.currentAddress={label:'Trabajo',address:$('oneAddress').value};setPage('quoteCategory')">Continuar</button>`}<button class="outline" onclick="state.returnPage='quoteAddress';editClient(state.currentClientIndex)">＋ Agregar / editar direcciones del cliente</button></div>`;return}
+if(state.page==="quoteServices"){let list=services().filter(s=>s.category===state.category);m.innerHTML=`${headerBack("Rubros","setPage('quoteCategory')")}<h2 class="title">${rubros.find(r=>r.name===state.category)?.emoji||"🛠️"} ${state.category}</h2><p class="muted">Seleccioná los trabajos. Los precios son editables desde Ajustes.</p>${list.length?list.map((s,i)=>{let key=state.category+"|"+s.name,sel=state.selected.find(x=>x.key===key);return `<div class="item"><div class="service"><div class="emoji">${s.emoji||"🛠️"}</div><div><b>${esc(s.name)}</b><div class="muted">${esc(s.unit)}</div><div class="price">${money(s.price)}</div></div></div><div class="qty"><button class="small" onclick="changeQty('${key.replace(/'/g,"\\'")}',-1)">−</button><b>${sel?sel.qty:0}</b><button class="small" onclick="changeQty('${key.replace(/'/g,"\\'")}',1)">＋</button></div></div>`}).join(""):`<div class="notice">No hay servicios cargados para este rubro todavía. Podés agregarlos desde Ajustes → Servicios y precios.</div>`}<div class="total" style="margin-top:16px"><div class="row"><span>Subtotal mano de obra</span><b>${money(state.selected.reduce((a,x)=>a+x.price*x.qty,0))}</b></div><div class="smallmuted">Materiales no incluidos.</div></div><div class="actions"><button class="outline" onclick="setPage('quoteCategory')">Cambiar rubro</button><button onclick="setPage('quoteReview')">Revisar presupuesto</button></div>`;return}
+if(state.page==="quoteReview"){let c=state.currentClient,addr=typeof state.currentAddress==="number"?(c.addresses||[])[state.currentAddress]:state.currentAddress;let total=state.selected.reduce((a,x)=>a+x.price*x.qty,0);m.innerHTML=`${headerBack("Servicios","setPage('quoteServices')")}<h2 class="title">Revisar presupuesto</h2><div class="card"><b>${esc(c.name)}</b><div class="muted">${esc(addr?.label||"Dirección de trabajo")}: ${esc(addr?.address||"Sin dirección")}</div><div class="muted">${esc(c.phone||"")}</div></div><div class="card" style="margin-top:12px">${state.selected.length?state.selected.map(x=>`<div class="item"><div>${esc(x.name)}<div class="muted">${x.qty} × ${money(x.price)}</div></div><b>${money(x.qty*x.price)}</b></div>`).join(""):`<p class="muted">No seleccionaste servicios. Podés guardar un presupuesto en $0 como borrador o volver y elegirlos.</p>`}<div class="total"><div class="row"><b>Total mano de obra</b><strong>${money(total)}</strong></div><div class="smallmuted">Materiales a cargo del cliente. Importe de demostración.</div></div><div class="field"><label>Observaciones / condiciones</label><textarea id="qnotes" placeholder="Plazo, alcance, condiciones..."></textarea></div><div class="actions"><button class="outline" onclick="setPage('quoteServices')">Volver</button><button onclick="saveQuote()">Guardar presupuesto</button></div></div>`;return}
+if(state.page==="quoteList"){m.innerHTML=`${headerBack("Inicio","setPage('home')")}<div class="row"><h2 class="title">Presupuestos guardados</h2>${can("quotes_create")?`<button class="small" onclick="newQuote()">＋ Nuevo</button>`:""}</div>${quotes().length?quotes().slice().reverse().map(q=>`<div class="card" style="margin-top:10px"><div class="row"><b>${esc(q.id)} · ${esc(q.clientName)}</b><span class="pill ${q.status==='Aceptado'?'':'gray'}">${esc(q.status)}</span></div><div class="muted">${esc(q.category)} · ${esc(q.date)}</div><div class="row" style="margin-top:8px"><b>${money(q.total)}</b><div class="actions" style="margin:0"><button class="outline small" onclick="viewQuote('${q.id}')">Ver</button>${can("quotes_status")?`<button class="small" onclick="quoteStatus('${q.id}')">Estado</button>`:""}</div></div></div>`).join(""):`<p class="muted">Todavía no guardaste presupuestos.</p>`}`;return}
+if(state.page==="quoteDetail"){let q=state.currentQuote;m.innerHTML=`${headerBack("Presupuestos","setPage('quoteList')")}<h2 class="title">${esc(q.id)}</h2><div class="card"><div class="row"><b>${esc(q.clientName)}</b><span class="pill">${esc(q.status)}</span></div><p class="muted">${esc(q.address||"")}</p>${q.items.map(x=>`<div class="item"><div>${esc(x.name)}<div class="muted">${x.qty} × ${money(x.price)}</div></div><b>${money(x.qty*x.price)}</b></div>`).join("")}<div class="total"><div class="row"><b>Total</b><strong>${money(q.total)}</strong></div></div><p class="muted">${esc(q.notes||"Sin observaciones")}</p><div class="actions">${can("quotes_status")?`<button class="secondary" onclick="quoteStatus('${q.id}')">Cambiar estado</button>`:""}${can("quotes_status")&&can("ot_view")?(q.status!=="Aceptado"?`<button onclick="acceptQuote('${q.id}')">Cliente aceptó · Crear OT</button>`:`<button onclick="makeOT('${q.id}')">Crear OT</button>`):""}</div></div>`;return}
+if(state.page==="otmenu"){m.innerHTML=`${headerBack("Inicio","setPage('home')")}<h2 class="title">Órdenes de trabajo</h2><p class="muted">Solo trabajos aprobados por el cliente.</p><div class="grid"><button class="tile" onclick="state.otFilter='En proceso';setPage('otlist')"><span class="emoji">🔄</span><b>En proceso</b><span>${ots().filter(o=>o.status==='En proceso').length} trabajos activos</span></button><button class="tile" onclick="state.otFilter='Finalizada';setPage('otlist')"><span class="emoji">✅</span><b>Finalizadas</b><span>${ots().filter(o=>o.status==='Finalizada').length} trabajos terminados</span></button></div><div class="actions"><button class="outline" onclick="setPage('quoteList')">Ver presupuestos</button></div>`;return}
+if(state.page==="otlist"){let list=ots().filter(o=>o.status===state.otFilter);m.innerHTML=`${headerBack("Órdenes de trabajo","setPage('otmenu')")}<h2 class="title">OT · ${state.otFilter}</h2>${list.length?list.slice().reverse().map(o=>`<div class="card" style="margin-top:10px"><div class="row"><b>${esc(o.id)} · ${esc(o.clientName)}</b><span class="pill ${o.status==='Finalizada'?'':'amber'}">${esc(o.status)}</span></div><div class="muted">${esc(o.category)} · ${esc(o.address||"")}</div><div class="row" style="margin-top:8px"><b>${money(o.total)}</b><button class="outline small" onclick="viewOT('${o.id}')">Abrir OT</button></div></div>`).join(""):`<div class="card"><p class="muted">No hay órdenes ${state.otFilter.toLowerCase()} todavía. Cuando acepten un presupuesto, podés crear la OT correspondiente.</p></div>`}`;return}
+if(state.page==="otDetail"){let o=state.currentOT;m.innerHTML=`${headerBack("Órdenes de trabajo","setPage('otlist')")}<h2 class="title">${esc(o.id)}</h2><div class="card"><div class="row"><b>${esc(o.clientName)}</b><span class="pill ${o.status==='Finalizada'?'':'amber'}">${esc(o.status)}</span></div><p class="muted">${esc(o.address||"")}</p><div class="item"><span>Trabajo</span><b>${esc(o.category)}</b></div><div class="item"><span>Importe mano de obra</span><b>${money(o.total)}</b></div><div class="item"><span>Creada</span><span>${esc(o.date)}</span></div><div class="field"><label>Notas de trabajo</label><textarea id="otnotes">${esc(o.notes||"")}</textarea></div><div class="actions">${can("ot_update")?(o.status==="En proceso"?`<button onclick="finishOT('${o.id}')">✓ Marcar como finalizada</button>`:`<button class="secondary" onclick="reopenOT('${o.id}')">Reabrir OT</button>`):""}${can("ot_update")?`<button class="outline" onclick="saveOTNotes('${o.id}')">Guardar notas</button>`:""}</div></div>`;return}
 }
+function newQuote(){if(!can("quotes_create")){alert("No tenés permiso para crear presupuestos.");return}state.selected=[];state.currentClient=null;state.currentAddress=null;setPage("quoteClient")}
+function clientListHtml(list){return list.length?list.map(c=>{let i=clients().findIndex(x=>x.name===c.name&&x.phone===c.phone);return `<button class="tile" style="width:100%;margin:6px 0;min-height:auto" onclick="chooseClient(${i})"><span class="emoji">👤</span><b>${esc(c.name)}</b><span>${esc(c.phone||"Sin teléfono")} · ${(c.addresses||[]).length} dirección(es)</span></button>`}).join(""):`<p class="muted">No hay clientes registrados. Creá uno nuevo para continuar.</p>`}
+function filterClients(){let q=$("clientSearch").value.toLowerCase();$("clientList").innerHTML=clientListHtml(clients().filter(c=>(c.name+" "+c.phone+" "+c.tax).toLowerCase().includes(q)))}
+function chooseClient(i){state.currentClientIndex=i;state.currentClient=clients()[i];state.currentAddress=null;setPage("quoteAddress")}
+function clientForm(){state.editingClient=null;state.returnPage="clients";setPage("clientForm")}
+function editClient(i){state.editingClient={...clients()[i],index:i};setPage("clientForm")}
+function addUserForm(){state.editingUser={};setPage("userForm")}
+function editUser(i){state.editingUser={...users()[i],index:i};setPage("userForm")}
+function deleteUser(i){let all=users(),u=all[i];if(!u)return;if(confirm("¿Eliminar el acceso de "+u.name+"?")){all.splice(i,1);save("users",all);render()}}
+function addServiceForm(){state.editingService={};setPage("serviceForm")}
+function editService(i){state.editingService={...services()[i],index:i};setPage("serviceForm")}
+function changeQty(key,delta){let s=services().find(s=>state.category+"|"+s.name===key);if(!s)return;let x=state.selected.find(x=>x.key===key);if(!x&&delta>0)state.selected.push({key,name:s.name,price:Number(s.price),qty:1,category:s.category,unit:s.unit});else if(x){x.qty+=delta;if(x.qty<=0)state.selected=state.selected.filter(y=>y.key!==key)}render()}
+function saveQuote(){if(!can("quotes_create")){alert("No tenés permiso para guardar presupuestos.");return}let c=state.currentClient,addr=typeof state.currentAddress==="number"?(c.addresses||[])[state.currentAddress]:state.currentAddress;let all=quotes(),id="P-"+String(Date.now()).slice(-6);let q={id,clientName:c.name,clientId:state.currentClientIndex,address:addr?.address||"",category:[...new Set(state.selected.map(x=>x.category))].join(", ")||state.category,items:state.selected.map(x=>({...x})),total:state.selected.reduce((a,x)=>a+x.price*x.qty,0),status:"Borrador",date:new Date().toLocaleDateString("es-AR"),notes:$("qnotes")?.value||""};all.push(q);save("quotes",all);state.selected=[];state.currentQuote=q;setPage("quoteDetail")}
+function viewQuote(id){state.currentQuote=quotes().find(q=>q.id===id);setPage("quoteDetail")}
+function quoteStatus(id){if(!can("quotes_status")){alert("No tenés permiso para cambiar estados.");return}let all=quotes(),q=all.find(q=>q.id===id);let next=prompt("Estado del presupuesto: Borrador, Enviado, En seguimiento, Aceptado o Rechazado",q.status);if(next&&["Borrador","Enviado","En seguimiento","Aceptado","Rechazado"].includes(next)){q.status=next;save("quotes",all);if(next==="Aceptado"&&!ots().some(o=>o.quoteId===id)&&confirm("¿Crear ahora la OT de este presupuesto aceptado?"))makeOT(id);else render()}}
+function acceptQuote(id){if(!can("quotes_status")||!can("ot_view")){alert("No tenés permiso para aceptar presupuestos y crear OT.");return}let all=quotes(),q=all.find(q=>q.id===id);q.status="Aceptado";save("quotes",all);makeOT(id)}
+function makeOT(id){if(!can("quotes_status")||!can("ot_view")){alert("No tenés permiso para crear órdenes de trabajo.");return}let q=quotes().find(q=>q.id===id);if(!q)return;if(ots().some(o=>o.quoteId===id)){alert("Este presupuesto ya tiene una OT.");return}let all=ots(),o={id:"OT-"+String(Date.now()).slice(-6),quoteId:id,clientName:q.clientName,address:q.address,category:q.category,total:q.total,status:"En proceso",date:new Date().toLocaleDateString("es-AR"),notes:""};all.push(o);save("ots",all);state.currentOT=o;setPage("otDetail")}
+function viewOT(id){state.currentOT=ots().find(o=>o.id===id);setPage("otDetail")}
+function finishOT(id){if(!can("ot_update")){alert("No tenés permiso para finalizar OT.");return}let all=ots(),o=all.find(o=>o.id===id);o.status="Finalizada";o.finishedAt=new Date().toLocaleDateString("es-AR");save("ots",all);state.currentOT=o;setPage("otDetail")}
+function reopenOT(id){if(!can("ot_update")){alert("No tenés permiso para reabrir OT.");return}let all=ots(),o=all.find(o=>o.id===id);o.status="En proceso";save("ots",all);state.currentOT=o;setPage("otDetail")}
+function saveOTNotes(id){if(!can("ot_update")){alert("No tenés permiso para modificar OT.");return}let all=ots(),o=all.find(o=>o.id===id);o.notes=$("otnotes").value;save("ots",all);state.currentOT=o;alert("Notas guardadas en este navegador.");render()}
+if(!localStorage.getItem("ars_users"))save("users",[defaultAdmin]);
+render();
 </script>
 </body>
 </html>
